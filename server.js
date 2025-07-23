@@ -9,6 +9,7 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
+const foodsController = require('./controllers/foods.js');
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
@@ -39,8 +40,8 @@ app.use(
         saveUninitialized: true,
     })
 );
-app.use('/auth', authController);
 
+app.use(passUserToView);
 
 //Routes below==================================================================
 
@@ -51,16 +52,63 @@ app.get("/", (req, res) => {
   });
 });
 
-//GET /(vip lounge)
-app.get("/vip-lounge", (req, res) => {
-  if (req.session.user) {
-    res.send(`Welcome to the party ${req.session.user.username}!`);
-  } else {
-    res.send("Sorry, no guests allowed!");
-  }
-});
+app.use('/auth', authController);
+app.use(isSignedIn);
+app.use('/users/:userId/foods', foodsController);
 
 //Routes above=====================================================================
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
+
+
+
+
+// Reference this chart when building your RESTful routes in your controller.
+
+// Action	Route	HTTP Verb
+// Index	‘/users/:userId/foods’	GET
+// New	‘/users/:userId/foods/new’	GET
+// Create	‘/users/:userId/foods’	POST
+// Show	‘/users/:userId/foods/:itemId’	GET
+// Edit	‘/users/:userId/foods/:itemId/edit’	GET
+// Update	‘/users/:userId/foods/:itemId’	PUT
+// Delete	‘/users/:userId/foods/:itemId’	DELETE
+
+// htmlhead.ejs <!DOCTYPE html>
+// <html lang=“en”>
+//   <head>
+//     <meta charset=“UTF-8" />
+//     <meta name=“viewport” content=“width=device-width, initial-scale=1.0" />
+//     <!-- BULMA CSS Library -->
+//     <link
+//       rel=“stylesheet”
+//       href=“https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css”
+//     />
+//     <title><%= title %></title>
+//   </head>
+//   <body>
+
+//   navbar.ejs
+// 4:11
+// <nav class=“navbar is-light” role=“navigation” aria-label=“main navigation”>
+//   <div class=“navbar-menu is-active”>
+//     <div class=“navbar-start”>
+//       <a class=“navbar-item” href=“/”>Home</a>
+//       <a class=“navbar-item” href=“/songs”>View All Songs</a>
+//       <a class=“navbar-item” href=“/songs/new”>Add a Song</a>
+//     </div>
+//   </div>
+// </nav>
+
+
+
+
+
+
+
+
+
+
+
+
