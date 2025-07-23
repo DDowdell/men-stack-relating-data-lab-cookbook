@@ -16,10 +16,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  pantry: {
-    type: String,
-    required: true
-  }
+  pantry: [foodSchema]
 });
 
 const User = mongoose.model("User", userSchema);
