@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  pantry: [foodSchema]
+  foods: [foodSchema]
 });
 
 const User = mongoose.model("User", userSchema);

@@ -9,5 +9,10 @@
   <body>
     <h1>Here is your Pantry</h1>
     <a href="/users/<%=user._id%>/foods/new">Add New Item</a>
+    <ul>
+      <% foods.forEach((food) => { %>
+      <li><%= food.name %></li>
+      <% }) %>
+    </ul>
   </body>
 </html>
