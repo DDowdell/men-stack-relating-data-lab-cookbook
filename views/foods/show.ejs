@@ -8,14 +8,14 @@
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1><%= food.name %></h1>
-    <% if (food.notes) { %>
     <p>Category: <%= food.category %></p>
     <p>Quantity: <%= food.quantity %></p>
-    <p>Notes: <%= food.notes %></p>
-    <% } %> 
+    <% if (food.notes) { %>
+        <p>Notes: <%= food.notes %></p>
+        <% } %> 
 
     <a href="/users/<%= user._id %>/foods/<%= food._id %>/edit">
-      Edit this food
+      Edit Food Item
     </a>
 
     <form
