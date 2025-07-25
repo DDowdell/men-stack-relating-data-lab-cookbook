@@ -77,31 +77,7 @@ app.listen(port, () => {
 // Update	‘/users/:userId/foods/:itemId’	PUT
 // Delete	‘/users/:userId/foods/:itemId’	DELETE
 
-// htmlhead.ejs <!DOCTYPE html>
-// <html lang=“en”>
-//   <head>
-//     <meta charset=“UTF-8" />
-//     <meta name=“viewport” content=“width=device-width, initial-scale=1.0" />
-//     <!-- BULMA CSS Library -->
-//     <link
-//       rel=“stylesheet”
-//       href=“https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css”
-//     />
-//     <title><%= title %></title>
-//   </head>
-//   <body>
 
-//   navbar.ejs
-// 4:11
-// <nav class=“navbar is-light” role=“navigation” aria-label=“main navigation”>
-//   <div class=“navbar-menu is-active”>
-//     <div class=“navbar-start”>
-//       <a class=“navbar-item” href=“/”>Home</a>
-//       <a class=“navbar-item” href=“/songs”>View All Songs</a>
-//       <a class=“navbar-item” href=“/songs/new”>Add a Song</a>
-//     </div>
-//   </div>
-// </nav>
 
 
 

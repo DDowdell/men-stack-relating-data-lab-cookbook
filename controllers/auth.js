@@ -22,7 +22,7 @@ router.post('/sign-up', async (req, res) => {
 
     // validation logic
     const user = await User.create(req.body);
-    res.send(`Thanks for signing up ${user.username}`);
+    res.redirect('/sign-in');
 });
 
 router.get('/sign-in', (req, res) => {
