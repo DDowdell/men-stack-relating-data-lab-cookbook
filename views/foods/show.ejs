@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= food.name %></title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1><%= food.name %></h1>
+    <% if (food.notes) { %>
+    <p>Category: <%= food.category %></p>
+    <p>Quantity: <%= food.quantity %></p>
+    <p>Notes: <%= food.notes %></p>
+    <% } %> 
+
+    <form
+      action="/users/<%= user._id %>/foods/<%= food._id %>?_method=DELETE" method="POST">
+      <button type="submit">Delete Item</button>
+    </form>
+
+  </body>
+</html>
