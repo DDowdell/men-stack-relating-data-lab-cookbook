@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editing <%= food.title %></title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Edit <%= food.name %></h1>
+
+    <form   action="/users/<%= user._id %>/foods/<%= food._id %>?_method=PUT" method="POST">
+        <label for="name">Item Name:</label>
+        <input type="text" name="name" id="name" value="<%= food.name %>"/>
+
+        <label for="category">Item Category:</label>
+        <select name="category" id="category" value="<%= food.category %>">
+            <option value=" ">Select Category</option>
+            <option value="Fruit" 
+            <%= food.category === 'Fruit' ? 'selected' : '' %>
+            >Fruit</option>
+            <option value="Vegatable"
+            <%= food.category === 'Vegatable' ? 'selected' : '' %>
+            >Vegatable</option>
+            <option value="Protien"
+            <%= food.category === 'Protien' ? 'selected' : '' %>
+            >Protien</option>
+            <option value="Grain"
+            <%= food.category === 'Grain' ? 'selected' : '' %>
+            >Grain</option>
+            <option value="Dairy"
+            <%= food.category === 'Dairy' ? 'selected' : '' %>
+            >Dairy</option>
+            <option value="Seasoning"
+            <%= food.category === 'Seasoning' ? 'selected' : '' %>
+            >Seasoning</option>
+        </select>
+
+        <label for="quantity">How Many Items:</label>
+        <input type="number" name="quantity" id="quantity" min="0" value="<%= food.quantity %>" />
+
+        <label for="notes">Notes:</label>
+        <textarea name="notes" id="notes" maxLength="100"><%= food.notes %></textarea>
+
+          <button type="submit">Edit Item</button>
+    </form>
+  </body>
+</html>
