@@ -14,12 +14,8 @@ const authController = require('./controllers/auth.js');
 const foodsController = require('./controllers/foods.js');
 const usersController = require('./controllers/users.js');
 
-// const User = require('')
-
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
-
-
 
 
 //Connections==================================================================

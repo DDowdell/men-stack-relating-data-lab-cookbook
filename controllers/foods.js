@@ -84,11 +84,4 @@ router.put('/:foodId', async (req, res) => {
   }
 });
 
-
-
-
-
-
-
-
 module.exports = router;
