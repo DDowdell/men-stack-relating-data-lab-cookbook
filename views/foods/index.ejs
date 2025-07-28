@@ -1,26 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <%- include('../partials/_navbar.ejs') %>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <%- include('../partials/_navbar.ejs') %>
     <title>My Pantry</title>
-  </head>
-  <body>
-    <h1>Here is your Pantry</h1>
-    <a href="/users/<%=user._id%>/foods/new">Add New Item</a>
-    <ul>
-      <% if (foods && foods.length > 0) { %>
-      <% foods.forEach((food) => { %>
-      <li>
-        <a href="/users/<%= user._id %>/foods/<%= food._id %>">
-        <%= food.name %>
-        </a>
-      </li>
-      <% }) %>
-      <% } else { %>
-        <li>No Items in Pantry</li>
-      <% } %>
-    </ul>
-  </body>
+</head>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f6f6f6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    color: #e74c3c;
+    margin-bottom: 20px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: inline-block;
+    transition: color 0.3s;
+  }
+
+  a:hover {
+    color: #e67e22;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    margin: 10px 0;
+    font-size: 1.2em;
+  }
+</style>
+
+<body>
+  <h1>Here is your Pantry</h1>
+  <a href="/users/<%=user._id%>/foods/new">Add New Item</a>
+  <ul>
+    <% if (foods && foods.length> 0) { %>
+      <% foods.forEach((food)=> { %>
+        <li>
+          <a href="/users/<%= user._id %>/foods/<%= food._id %>">
+            <%= food.name %>
+          </a>
+        </li>
+        <% }) %>
+          <% } else { %>
+            <li>No Items in Pantry</li>
+            <% } %>
+  </ul>
+</body>
+
 </html>

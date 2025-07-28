@@ -1,27 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= food.name %></title>
-  </head>
-  <body>
+    <title>
+        <%= food.name %>
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <h3><i class="fas fa-utensils"></i>
+        <%= food.name %>
+    </h3>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f6f6f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .food-details {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #e74c3c;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #e67e22;
+        }
+
+        button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1><%= food.name %></h1>
-    <p>Category: <%= food.category %></p>
-    <p>Quantity: <%= food.quantity %></p>
-    <% if (food.notes) { %>
-        <p>Notes: <%= food.notes %></p>
-        <% } %> 
+        <div class="food-details">
+            <h1>
+                <%= food.name %>
+            </h1>
+            <p>Category: <%= food.category %>
+            </p>
+            <p>Quantity: <%= food.quantity %>
+            </p>
+            <% if (food.notes) { %>
+                <p>Notes: <%= food.notes %>
+                </p>
+                <% } %>
 
-    <a href="/users/<%= user._id %>/foods/<%= food._id %>/edit">
-      Edit Food Item
-    </a>
+                    <div class="button-container">
+                        <a href="/users/<%= user._id %>/foods/<%= food._id %>/edit">Edit Food Item</a>
+                        <form action="/users/<%= user._id %>/foods/<%= food._id %>?_method=DELETE" method="POST"
+                            style="display:inline;">
+                            <button type="submit">Delete Item</button>
+                        </form>
+                    </div>
+        </div>
+</body>
 
-    <form
-      action="/users/<%= user._id %>/foods/<%= food._id %>?_method=DELETE" method="POST">
-      <button type="submit">Delete Item</button>
-    </form>
-
-  </body>
 </html>

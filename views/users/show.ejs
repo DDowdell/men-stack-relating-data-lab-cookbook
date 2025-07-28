@@ -3,25 +3,79 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <%- include('../partials/_navbar.ejs') %>
+        <%- include('../partials/_navbar.ejs') %>
     <title><%= allUsers.username %>'s Pantry</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <h3><i class="fas fa-user"></i> <a href="/users/<%= user._id %>"><%= user.username %></a></h3>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .pantry-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .pantry-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 200px;
+            transition: transform 0.2s;
+        }
+
+        .pantry-item:hover {
+            transform: scale(1.05);
+        }
+
+        .pantry-item h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+
+        .pantry-item p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .notes {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+    </style>
 </head>
 <body>
     <h1><%= allUsers.username %>'s Pantry</h1>
 
-    <% if (allUsers.foods && allUsers.foods.length > 0) { %>
-        <ul>
+    <div class="pantry-container">
+        <% if (allUsers.foods && allUsers.foods.length > 0) { %>
             <% allUsers.foods.forEach(food => { %>
-                <li>
-                    <%= food.name %> - 
-                    <%= food.category %> - 
-                    <%= food.quantity %> 
-                    <% if (food.notes) { %> - Notes: <%= food.notes %> <% } %>
-                </li>
+                <div class="pantry-item">
+                    <h3><%= food.name %></h3>
+                    <p><strong>Category:</strong> <%= food.category %></p>
+                    <p><strong>Quantity:</strong> <%= food.quantity %></p>
+                    <% if (food.notes) { %>
+                        <p class="notes"><strong>Notes:</strong> <%= food.notes %></p>
+                    <% } %>
+                </div>
             <% }) %>
-        </ul>
-    <% } else { %>
-        <p>This user has no items in their pantry.</p>
-    <% } %>
+        <% } else { %>
+            <p>This user has no items in their pantry.</p>
+        <% } %>
+    </div>
 </body>
 </html>
