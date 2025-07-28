@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
 
-// router logic========================================
 router.get('/', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);

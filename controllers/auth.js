@@ -4,7 +4,6 @@ const router = express.Router();
 const User = require('../models/user.js');
 
 
-//Routes====================================
 router.get('/sign-up', (req, res) => {
     res.render('auth/sign-up.ejs');
 });
@@ -20,7 +19,6 @@ router.post('/sign-up', async (req, res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     req.body.password = hashedPassword;
 
-    // validation logic
     const user = await User.create(req.body);
     res.redirect('/sign-in');
 });
@@ -52,5 +50,4 @@ router.get("/sign-out", (req, res) => {
 });
 
 
-// ==========================================
 module.exports = router;
